@@ -1,13 +1,3 @@
-# StaffMember.create!(
-#   email: "taro@example.com",
-#   family_name: "山田",
-#   given_name: "太郎",
-#   family_name_kana: "ヤマダ",
-#   given_name_kana: "タロウ",
-#   password: "password",
-#   start_date: Date.today
-# )
-
 family_names = %w{
   佐藤:サトウ:satou
   鈴木:スズキ:suzuki
@@ -30,7 +20,7 @@ given_names = %w{
   StaffMember.create!(
     email: "#{fn[2]}.#{gn[2]}@example.com",
     family_name: fn[0],
-    given_name: fn[0],
+    given_name: gn[0],
     family_name_kana: fn[1],
     given_name_kana: gn[1],
     password: "password",
