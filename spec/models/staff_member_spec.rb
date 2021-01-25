@@ -59,6 +59,31 @@ RSpec.describe StaffMember, type: :model do
       expect(member).to be_valid
     end
 
+    example "漢字を含むfamily_nameは有効" do
+      member = build(:staff_member, family_name: "田中", given_name: "一郎")
+      expect(member).to be_valid
+    end
+
+    example "ひらがなを含むfamily_nameは有効" do
+      member = build(:staff_member, family_name: "ひらい", given_name: "たろう")
+      expect(member).to be_valid
+    end
+
+    example "カタカナを含むfamily_nameは有効" do
+      member = build(:staff_member, family_name: "クリストファー", given_name: "レイナ")
+      expect(member).to be_valid
+    end
+
+    example "アルファベットを含むfamily_nameは有効" do
+      member = build(:staff_member, family_name: "katou", given_name: "kylee")
+      expect(member).to be_valid
+    end
+
+    example "漢字・ひらがな・カタカナ・アルファベット以外の文字は無効" do
+      member = build(:staff_member, family_name: "aa@r", given_name: "tt%b")
+      expect(member).not_to be_valid
+    end
+
     example "他の職員のメールアドレスと重複したemailは無効" do
       member1 = create(:staff_member)
       member2 = build(:staff_member, email: member1.email)
